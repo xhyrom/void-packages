@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 env:
-  GHCR_IMAGE: "ghcr.io/xhyrom/${{ github.event.repository.name }}"
+  GHCR_IMAGE: "ghcr.io/xhyrom/void-buildroot-glibc"
 
 jobs:
   build:
@@ -42,7 +42,7 @@ jobs:
           docker run --rm \
             -v $(pwd):/workspace \
             --platform ${{ matrix.config.platform }} \
-            ${GHCR_IMAGE}:${{ matrix.config.arch }} \
+            ${GHCR_IMAGE}:38478e9@sha256:9e68dfba56d591cacf5593bed267945cb83c805bd15837aee9b3da2697a5bf61 \
             /workspace/scripts/create_packages.sh ${{ matrix.config.arch }} ${{ matrix.config.sha256 }}
 
           sudo chown -R $(id -u):$(id -g) void-packages/hostdir/binpkgs
@@ -55,7 +55,7 @@ jobs:
           docker run --rm \
             -v $(pwd):/workspace \
             --platform ${{ matrix.config.platform }} \
-            ${GHCR_IMAGE}:${{ matrix.config.arch }} \
+            ${GHCR_IMAGE}:38478e9@sha256:9e68dfba56d591cacf5593bed267945cb83c805bd15837aee9b3da2697a5bf61 \
             /workspace/scripts/sign_repository.sh "repository-${{ matrix.config.arch }}" "xhyrom" ${{ github.event.pusher.email }}
 
       - name: Upload repository as artifacts
@@ -71,7 +71,7 @@ jobs:
       contents: read
       packages: read
     container:
-      image: ghcr.io/xhyrom/${{ github.event.repository.name }}:x86_64
+      image: ghcr.io/xhyrom/${{ github.event.repository.name }}:38478e9@sha256:9e68dfba56d591cacf5593bed267945cb83c805bd15837aee9b3da2697a5bf61
     steps:
       - uses: actions/checkout@v4
         with:
