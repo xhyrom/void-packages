@@ -6,7 +6,7 @@ archs="x86_64"
 
 hostmakedepends=""
 makedepends=""
-depends="qt6-base qt6-widgets qt6-xml qt6-qt5compat"
+depends="qt6-base qt6-widgets qt6-xml qt6-qt5compat qt6-imageformats qt6-svg qt6-plugin-tls-openssl zlib"
 
 short_desc="DRM-free Prism Launcher fork with support for custom auth servers."
 maintainer="Jozef Steinhübl <xhyrom.hyro@gmail.com>"
