@@ -1,118 +1,145 @@
-# https://github.com/xdeb-org/voidlinux-repository/blob/main/.github/workflows/pages.yml
-
-name: Pages
+name: Check build
 
 on:
-  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'srcpkgs/**'
+  push:
+    branches:
+      - 'ci-**'
+    paths:
+      - 'srcpkgs/**'
 
-env:
-  GHCR_IMAGE: "ghcr.io/xhyrom/void-buildroot-glibc"
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  build:
+  # Lint changed templates.
+  xlint:
+    name: Lint templates
     runs-on: ubuntu-latest
+
+    container:
+      image: 'ghcr.io/void-linux/void-buildroot-musl:20231230R1'
+      env:
+        PATH: '/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/usr/local/bin:/tmp/bin'
+        LICENSE_LIST: common/travis/license.lst
+
+    steps:
+      - name: Prepare container
+        run: |
+          # switch to repo-ci mirror
+          mkdir -p /etc/xbps.d && cp /usr/share/xbps.d/*-repository-*.conf /etc/xbps.d/
+          sed -i 's|repo-default|repo-ci|g' /etc/xbps.d/*-repository-*.conf
+          # Sync and upgrade once, assume error comes from xbps update
+          xbps-install -Syu || xbps-install -yu xbps
+          # Upgrade again (in case there was a xbps update)
+          xbps-install -yu
+          # install tools needed for lints
+          xbps-install -y grep curl git
+      - name: Clone and checkout
+        uses: classabbyamp/treeless-checkout-action@v1
+      - name: Create hostrepo and prepare masterdir
+        run: |
+         ln -s "$(pwd)" /hostrepo &&
+         common/travis/set_mirror.sh &&
+         common/travis/prepare.sh &&
+         common/travis/fetch-xtools.sh
+      - run: common/travis/changed_templates.sh
+      - name: Run lints
+        run: |
+          rv=0
+          common/travis/xlint.sh || rv=1
+          common/travis/verify-update-check.sh || rv=1
+          exit $rv
+
+  # Build changed packages.
+  build:
+    name: Build packages
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.pull_request.title, '[ci skip]') && !contains(github.event.pull_request.body, '[ci skip]')"
+
+    container:
+      image: ghcr.io/void-linux/void-buildroot-${{ matrix.config.libc }}:20231230R1
+      options: --platform ${{ matrix.config.platform }}
+      env:
+        PATH: '/usr/libexec/chroot-git:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/usr/local/bin:/tmp/bin'
+        ARCH: '${{ matrix.config.arch }}'
+        BOOTSTRAP: '${{ matrix.config.host }}'
+        TEST: '${{ matrix.config.test }}'
+        HOSTREPO: /hostrepo
+
     strategy:
       fail-fast: false
       matrix:
         config:
-          - arch: x86_64
-            platform: linux/amd64
-          # - arch: i686
-          # platform: linux/i386
-          #- arch: aarch64
-          #  platform: linux/arm64
-    permissions:
-      contents: read
-      packages: read
+          - { arch: x86_64,       host: x86_64,      libc: glibc, platform: linux/amd64, test: 1 }
+          - { arch: i686,         host: i686,        libc: glibc, platform: linux/386,   test: 1 }
+          - { arch: aarch64,      host: x86_64,      libc: glibc, platform: linux/amd64, test: 0 }
+          - { arch: armv7l,       host: x86_64,      libc: glibc, platform: linux/amd64, test: 0 }
+          - { arch: x86_64-musl,  host: x86_64-musl, libc: musl,  platform: linux/amd64, test: 1 }
+          - { arch: armv6l-musl,  host: x86_64-musl, libc: musl,  platform: linux/amd64, test: 0 }
+          - { arch: aarch64-musl, host: x86_64-musl, libc: musl,  platform: linux/amd64, test: 0 }
+
     steps:
-      - uses: actions/checkout@v4
-        with:
-          submodules: true
-
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
-        with:
-          platforms: ${{ matrix.config.platform }}
-
-      - name: Create XBPS packages
+      - name: Prepare container
         run: |
-          repository_dir="repository-${{ matrix.config.arch }}"
-          mkdir -p ${repository_dir}
+          # switch to repo-ci mirror
+          mkdir -p /etc/xbps.d && cp /usr/share/xbps.d/*-repository-*.conf /etc/xbps.d/
+          sed -i 's|repo-default|repo-ci|g' /etc/xbps.d/*-repository-*.conf
+          # Sync and upgrade once, assume error comes from xbps update
+          xbps-install -Syu || xbps-install -yu xbps
+          # Upgrade again (in case there was a xbps update)
+          xbps-install -yu
 
-          docker run --rm \
-            -v $(pwd):/workspace \
-            --platform ${{ matrix.config.platform }} \
-            ${GHCR_IMAGE}:38478e9@sha256:9e68dfba56d591cacf5593bed267945cb83c805bd15837aee9b3da2697a5bf61 \
-            /workspace/scripts/create_packages.sh ${{ matrix.config.arch }} ${{ matrix.config.sha256 }}
-
-          sudo chown -R $(id -u):$(id -g) void-packages/hostdir/binpkgs
-          mv void-packages/hostdir/binpkgs/*.xbps ${repository_dir}
-
-      - name: Create XBPS repository
+      - name: Clone and checkout
+        uses: classabbyamp/treeless-checkout-action@v1
+      - name: Create hostrepo and prepare masterdir
         run: |
-          echo -n "${{ secrets.XBPS_REPOSITORY_KEY }}" > private.pem
+         ln -s "$(pwd)" /hostrepo &&
+         common/travis/set_mirror.sh &&
+         common/travis/prepare.sh &&
+         common/travis/fetch-xtools.sh
+      - run: common/travis/changed_templates.sh
 
-          docker run --rm \
-            -v $(pwd):/workspace \
-            --platform ${{ matrix.config.platform }} \
-            ${GHCR_IMAGE}:38478e9@sha256:9e68dfba56d591cacf5593bed267945cb83c805bd15837aee9b3da2697a5bf61 \
-            /workspace/scripts/sign_repository.sh "repository-${{ matrix.config.arch }}" "xhyrom" ${{ github.event.pusher.email }}
-
-      - name: Upload repository as artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: "repository-${{ matrix.config.arch }}"
-          path: "repository-${{ matrix.config.arch }}"
-
-  merge:
-    runs-on: ubuntu-latest
-    needs: build
-    permissions:
-      contents: read
-      packages: read
-    container:
-      image: ghcr.io/xhyrom/${{ github.event.repository.name }}:38478e9@sha256:9e68dfba56d591cacf5593bed267945cb83c805bd15837aee9b3da2697a5bf61
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          submodules: true
-
-      - name: Download all build artifacts
-        uses: actions/download-artifact@v3
-
-      - name: Merge artifacts
+      - name: Build and check packages
         run: |
-          mkdir -p repository
-          mv repository-x86_64/* repository
-          #mv repository-i686/* repository
-          #mv repository-aarch64/* repository
+          (
+          here="$(pwd)"
+          cd /
+          "$here/common/travis/build.sh" "$BOOTSTRAP" "$ARCH" "$TEST"
+          )
+          ls
 
-      - name: Build apindex
+      - name: Show files
         run: |
-          cd apindex
-          mkdir build
-          cd build
-          cmake .. -DCMAKE_INSTALL_PREFIX=/tmp/apindex
-          make install
+          (
+          here="$(pwd)"
+          cd /
+          "$here/common/travis/show_files.sh" "$BOOTSTRAP" "$ARCH"
+          )
 
-      - name: Generate index.html
-        run: cd repository && /tmp/apindex/bin/apindex .
+      - name: Compare to previous
+        run: |
+          (
+          here="$(pwd)"
+          cd /
+          "$here/common/travis/xpkgdiff.sh" "$BOOTSTRAP" "$ARCH"
+          )
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: repository
+      - name: Check file conflicts
+        if: matrix.config.arch == 'x86_64' # the arch indexed in xlocate
+        run: |
+          if [ -s /tmp/templates ]; then
+              xlocate -S &&
+              common/scripts/lint-conflicts $HOME/hostdir/binpkgs
+          fi
 
-  deploy:
-    needs: merge
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
+      - name: Verify repository state
+        run: |
+          (
+          here="$(pwd)"
+          cd /
+          "$here/common/travis/check-install.sh" "$BOOTSTRAP" "$ARCH"
+          )
