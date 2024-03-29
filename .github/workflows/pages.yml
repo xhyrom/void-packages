@@ -110,6 +110,7 @@ jobs:
           cd /
           "$here/common/travis/build.sh" "$BOOTSTRAP" "$ARCH" "$TEST"
           )
+          echo "Listen here okay?:"
           ls
 
       - name: Show files
