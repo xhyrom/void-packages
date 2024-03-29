@@ -5,6 +5,7 @@
 
 # exclude everything in root except files and directories from void-packages
 /*
+!/apindex
 !/.editorconfig
 !/.gitattributes
 !/.github

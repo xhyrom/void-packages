@@ -109,7 +109,7 @@ jobs:
           )
           echo "Listen here okay?:"
           ls
-          ls hostdir/binpkgs/main
+          ls hostdir/binpkgs
 
       - name: Show files
         run: |

@@ -1,0 +1,3 @@
+[submodule "apindex"]
+	path = apindex
+	url = https://github.com/libthinkpad/apindex.git
