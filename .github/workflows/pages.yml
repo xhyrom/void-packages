@@ -5,11 +5,7 @@ on:
     paths:
       - 'srcpkgs/**'
   push:
-    branches:
-      - 'ci-**'
-    paths:
-      - 'srcpkgs/**'
-  workfllow_dispatch:
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
