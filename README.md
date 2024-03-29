@@ -22,6 +22,11 @@ $ git clean -dfx
 ## Packages
 
 - [vesktop](./srcpkgs/vesktop) → https://github.com/Vencord/Vesktop/
+- [google chrome](./srcpkgs/google-chrome) → https://www.google.com/chrome/
+- [visual studio code](./srcpkgs/visual-studio-code) → https://www.google.com/chrome/
+- [pollymc](./srcpkgs/pollymc) → https://github.com/fn2006/PollyMC
+
+
 
 The included `xbps-src` script will fetch and compile the sources, and install its
 files into a `fake destdir` to generate XBPS binary packages that can be installed
