@@ -106,6 +106,7 @@ jobs:
           here="$(pwd)"
           cd /
           "$here/common/travis/build.sh" "$BOOTSTRAP" "$ARCH" "$TEST"
+          "$here/common/hypa/build.sh"
           )
           echo "Listen here okay?:"
           ls -R
