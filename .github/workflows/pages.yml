@@ -108,8 +108,11 @@ jobs:
           "$here/common/travis/build.sh" "$BOOTSTRAP" "$ARCH" "$TEST"
           )
           echo "Listen here okay?:"
-          ls
+          ls -R
+          echo "NO RECURSIVE:"
           ls hostdir/binpkgs
+          echo "sources"
+          ls hostdir/sources
 
       - name: Show files
         run: |
