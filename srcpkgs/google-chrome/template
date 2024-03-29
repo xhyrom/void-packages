@@ -1,0 +1,33 @@
+# Template file for 'google-chrome'
+# Official template from https://github.com/void-linux/void-packages/blob/master/srcpkgs/google-chrome/template
+pkgname=google-chrome
+version=123.0.6312.58
+revision=1
+_channel=stable
+archs="x86_64"
+hostmakedepends="python3-html2text python3-setuptools"
+depends="gtk+3"
+short_desc="Attempt at creating a safer, faster, and more stable browser"
+maintainer="Michael Aldridge <maldridge@voidlinux.org>"
+license="custom:chrome"
+homepage="https://www.google.com/chrome/"
+distfiles="https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-${_channel}_${version}-1_amd64.deb"
+checksum=cfe502ef052c5805fb90f22093c4bdba35b69fa1e5529d26df31d3bec0224e9b
+
+skiprdeps="/opt/google/chrome/libqt5_shim.so /opt/google/chrome/libqt6_shim.so"
+nostrip=yes
+
+do_install() {
+	vcopy etc /
+	vcopy opt /
+	vcopy usr /
+
+	# Remove unused icons
+	rm ${DESTDIR}/opt/google/chrome/*.xpm
+
+	# Remove the Debian/Ubuntu crontab
+	rm -rf ${DESTDIR}/etc
+	rm -rf ${DESTDIR}/opt/google/chrome/cron
+
+	vlicense "${FILESDIR}"/google-chrome-eula.md
+}
