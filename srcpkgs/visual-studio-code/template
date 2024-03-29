@@ -1,0 +1,26 @@
+# Template file for 'visual-studio-code-bin'
+pkgname=visual-studio-code
+version=1.87.2
+revision=1
+archs="x86_64"
+provides="code"
+
+hostmakedepends=""
+makedepends=""
+depends="libxkbfile gnupg gtk+3 libsecret nss libnotify glibc lsof shared-mime-info xdg-utils alsa-lib"
+
+short_desc="Visual Studio Code (vscode): Editor for building and debugging modern web and cloud applications (official binary version)"
+maintainer="Jozef Steinhübl <xhyrom.hyro@gmail.com>"
+license="custom: commercial"
+homepage="https://code.visualstudio.com/"
+
+distfiles="https://update.code.visualstudio.com/${version}/linux-x64/stable>code_x86_${version}.tar.gz"
+checksum="c2e97cdc63ff1bcbfbb10c227b5398623d21f21e487108fa1d740dabe7d37985"
+
+do_install() {
+	vmkdir "opt/${pkgname}"
+	vlicense "resources/app/LICENSE.rtf"
+
+	vcopy "*" "opt/${pkgname}"
+	vinstall "${FILESDIR}/code" 755 "usr/bin"
+}

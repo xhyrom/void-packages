@@ -1,7 +1,27 @@
-## The XBPS source packages collection
+## Hyro's XBPS source packages collection
 
-This repository contains the XBPS source packages collection to build binary packages
-for the Void Linux distribution.
+This repository contains my personal, non-upstreamed packages.
+
+## Basic build instructions
+
+```
+$ ./xbps-src binary-bootstrap
+$ ./xbps-src pkg <package-name>
+```
+
+To install a package, first build it, then use `xi` from `xtools`:
+```
+$ xi <package-name>
+```
+
+`After building and installing a package, consider running`
+```
+$ git clean -dfx
+```
+
+## Packages
+
+- [vesktop](./srcpkgs/vesktop) → https://github.com/Vencord/Vesktop/
 
 The included `xbps-src` script will fetch and compile the sources, and install its
 files into a `fake destdir` to generate XBPS binary packages that can be installed
