@@ -1,4 +1,4 @@
-name: Check build
+name: Pages
 
 on:
   pull_request:
@@ -9,6 +9,7 @@ on:
       - 'ci-**'
     paths:
       - 'srcpkgs/**'
+  workfllow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
