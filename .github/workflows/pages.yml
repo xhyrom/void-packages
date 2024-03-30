@@ -53,7 +53,7 @@ jobs:
       image: ghcr.io/void-linux/void-buildroot-${{ matrix.config.libc }}:20231230R1
       options: --platform ${{ matrix.config.platform }}
       env:
-        PATH: '/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/usr/local/bin:/tmp/bin'
+        PATH: '/usr/libexec/chroot-git:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/usr/local/bin:/tmp/bin'
         ARCH: '${{ matrix.config.arch }}'
         BOOTSTRAP: '${{ matrix.config.host }}'
         TEST: '${{ matrix.config.test }}'
@@ -81,14 +81,10 @@ jobs:
           xbps-install -Syu || xbps-install -yu xbps
           # Upgrade again (in case there was a xbps update)
           xbps-install -yu
-          xbps-install -y cmake python3 tar git
+          xbps-install -y cmake python3 tar
 
       - name: Clone and checkout
-        uses: actions/checkout@v4
-        with:
-          submodules: true
-          filter: tree:0
-          fetch-depth: 0
+        uses: classabbyamp/treeless-checkout-action@v1
 
       - name: Create hostrepo and prepare masterdir
         run: |
@@ -109,6 +105,8 @@ jobs:
 
       - name: Build apindex
         run: |
+          git clone https://github.com/libthinkpad/apindex.git
+
           cd apindex
           mkdir build
           cd build
