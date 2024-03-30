@@ -102,12 +102,7 @@ jobs:
 
       - name: Build and check packages
         run: |
-          (
-          here="$(pwd)"
-          cd /
-          "$here/common/travis/build.sh" "$BOOTSTRAP" "$ARCH" "$TEST"
-          )
-
+          rm srcpkgs/google-chrome -rf
           ./common/hypa/build.sh
 
           echo "Listen here okay?:"
