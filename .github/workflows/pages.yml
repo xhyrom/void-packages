@@ -1,15 +1,7 @@
 name: Pages
 
 on:
-  pull_request:
-    paths:
-      - 'srcpkgs/**'
-  push:
   workflow_dispatch:
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
 
 jobs:
   # Lint changed templates.
@@ -61,7 +53,7 @@ jobs:
       image: ghcr.io/void-linux/void-buildroot-${{ matrix.config.libc }}:20231230R1
       options: --platform ${{ matrix.config.platform }}
       env:
-        PATH: '/usr/libexec/chroot-git:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/usr/local/bin:/tmp/bin'
+        PATH: '/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/usr/local/bin:/tmp/bin'
         ARCH: '${{ matrix.config.arch }}'
         BOOTSTRAP: '${{ matrix.config.host }}'
         TEST: '${{ matrix.config.test }}'
@@ -89,10 +81,14 @@ jobs:
           xbps-install -Syu || xbps-install -yu xbps
           # Upgrade again (in case there was a xbps update)
           xbps-install -yu
-          xbps-install -y cmake python3 tar
+          xbps-install -y cmake python3 tar git
 
       - name: Clone and checkout
-        uses: classabbyamp/treeless-checkout-action@v1
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          filter: tree:0
+          fetch-depth: 0
 
       - name: Create hostrepo and prepare masterdir
         run: |
@@ -102,20 +98,17 @@ jobs:
          common/travis/fetch-xtools.sh
       - run: common/travis/changed_templates.sh
 
-      - name: Build and check packages
+      - name: Build packages
+        run: ./common/hypa/build.sh
+
+      - name: Sign packages
         run: |
-          rm srcpkgs/google-chrome -rf
-          ./common/hypa/build.sh
-          echo "Listen here okay?:"
-          ls -R
-          echo "NO RECURSIVE:"
-          ls hostdir/binpkgs
-          echo "sources"
-          ls hostdir/sources
+          echo -n "${{ secrets.SIGN_PRIVATE_KEY }}" > private.pem
+
+          ./common/hypa/sign.sh hostdir/binpkgs ${{ secrets.SIGN_USERNAME }} ${{ secrets.SIGN_EMAIL }}
 
       - name: Build apindex
         run: |
-          git clone https://github.com/libthinkpad/apindex.git
           cd apindex
           mkdir build
           cd build
@@ -130,37 +123,6 @@ jobs:
         with:
           path: hostdir/binpkgs
 
-      - name: Show files
-        run: |
-          (
-          here="$(pwd)"
-          cd /
-          "$here/common/travis/show_files.sh" "$BOOTSTRAP" "$ARCH"
-          )
-
-      - name: Compare to previous
-        run: |
-          (
-          here="$(pwd)"
-          cd /
-          "$here/common/travis/xpkgdiff.sh" "$BOOTSTRAP" "$ARCH"
-          )
-
-      - name: Check file conflicts
-        if: matrix.config.arch == 'x86_64' # the arch indexed in xlocate
-        run: |
-          if [ -s /tmp/templates ]; then
-              xlocate -S &&
-              common/scripts/lint-conflicts $HOME/hostdir/binpkgs
-          fi
-
-      - name: Verify repository state
-        run: |
-          (
-          here="$(pwd)"
-          cd /
-          "$here/common/travis/check-install.sh" "$BOOTSTRAP" "$ARCH"
-          )
   deploy:
     needs: build
     runs-on: ubuntu-latest
