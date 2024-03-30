@@ -89,7 +89,7 @@ jobs:
           xbps-install -Syu || xbps-install -yu xbps
           # Upgrade again (in case there was a xbps update)
           xbps-install -yu
-          xbps-install -y cmake python3
+          xbps-install -y cmake python3 tar
 
       - name: Clone and checkout
         uses: classabbyamp/treeless-checkout-action@v1
