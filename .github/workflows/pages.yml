@@ -91,11 +91,7 @@ jobs:
           xbps-install -yu
 
       - name: Clone and checkout
-        uses: actions/checkout@v4
-        with:
-          submodules: true
-          filter: tree:0
-          fetch-depth: 0
+        uses: classabbyamp/treeless-checkout-action@v1
 
       - name: Create hostrepo and prepare masterdir
         run: |
@@ -119,6 +115,7 @@ jobs:
 
       - name: Build apindex
         run: |
+          git clone https://github.com/libthinkpad/apindex.git
           cd apindex
           mkdir build
           cd build
