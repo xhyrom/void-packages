@@ -5,5 +5,10 @@ for xbps_pkg in $(ls -1 ./srcpkgs); do
 		continue
 	fi
 
+	if grep -q "restricted=yes" ./srcpkgs/${xbps_pkg}/template; then
+		# license :(
+		continue
+	fi
+
 	./xbps-src pkg -Q ${xbps_pkg} || exit 1
 done

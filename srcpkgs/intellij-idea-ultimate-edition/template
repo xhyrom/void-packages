@@ -16,6 +16,7 @@ nopie=yes
 python_version=3
 # requires liblldb.so which is unversioned, pulled by lldb-devel
 skiprdeps="/usr/lib/intellij-idea-ultimate-edition/plugins/Kotlin/bin/linux/LLDBFrontend"
+restricted=yes
 
 do_extract() {
 	bsdtar xf ${XBPS_SRCDISTDIR}/${pkgname}-${version}/${_filename} --strip-components=1 -C .

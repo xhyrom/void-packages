@@ -15,6 +15,7 @@ distfiles="https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stab
 checksum=cfe502ef052c5805fb90f22093c4bdba35b69fa1e5529d26df31d3bec0224e9b
 
 skiprdeps="/opt/google/chrome/libqt5_shim.so /opt/google/chrome/libqt6_shim.so"
+restricted=yes
 nostrip=yes
 
 do_install() {
