@@ -1,0 +1,6 @@
+#!/bin/bash
+
+XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-~/.config}
+
+# Launch
+exec /opt/MS-365-Electron/ms-365-electron "$@"
