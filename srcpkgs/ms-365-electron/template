@@ -1,7 +1,7 @@
 # Template file for 'ms-365-electron'
 pkgname=ms-365-electron
 version=1.2.0
-revision=1
+revision=2
 short_desc="Unofficial Microsoft 365 Web Desktop Wrapper made with Electron"
 maintainer="Jozef Steinhübl <xhyrom.hyro@gmail.com>"
 license="MIT"
@@ -13,5 +13,5 @@ checksum="9163cfe2ac8805ef3493da6f0e4c5caab1fbcb41ccd1baa624055b917c0b69f3"
 
 do_install() {
 	vcopy opt /
-	vinstall "${FILESDIR}/office" 755 "usr/bin"
+	vinstall "${FILESDIR}/ms-365-electron" 755 "usr/bin"
 }
