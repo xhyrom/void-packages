@@ -1,6 +1,6 @@
 # Template file for 'visual-studio-code-bin'
 pkgname=visual-studio-code
-version=1.87.2
+version=1.89.0
 revision=1
 archs="x86_64"
 provides="code"
