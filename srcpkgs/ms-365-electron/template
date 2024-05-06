@@ -1,12 +1,11 @@
 # Template file for 'ms-365-electron'
 pkgname=ms-365-electron
 version=1.2.0
-revision=2
+revision=3
 short_desc="Unofficial Microsoft 365 Web Desktop Wrapper made with Electron"
 maintainer="Jozef Steinhübl <xhyrom.hyro@gmail.com>"
 license="MIT"
 homepage="https://github.com/agam778/MS-365-Electron"
-provides="office"
 
 distfiles="https://github.com/agam778/MS-365-Electron/releases/download/v${version}/MS-365-Electron-v${version}-linux-amd64.deb"
 checksum="9163cfe2ac8805ef3493da6f0e4c5caab1fbcb41ccd1baa624055b917c0b69f3"
