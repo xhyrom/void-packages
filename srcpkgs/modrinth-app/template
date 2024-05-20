@@ -1,0 +1,18 @@
+# Template file for 'modrinth-app'
+pkgname=modrinth-app
+version=0.7.1
+revision=1
+hostmakedepends=""
+makedepends=""
+depends=""
+short_desc="An unique, open source launcher that allows you to play your favorite mods, and keep them up to date, all in one neat little package."
+maintainer="Jozef Steinhübl <xhyrom.hyro@gmail.com>"
+license="GPL-3.0-or-later"
+homepage="https://modrinth.com/app"
+distfiles="https://launcher-files.modrinth.com/versions/${version}/linux/modrinth-app_${version}_amd64.deb"
+checksum="9e2b1c187a3df1f5db87fd9fe214e4bccf67553d69325243bcb39f62514c6be6"
+
+
+do_install() {
+	vinstall "bin/modrinth-app" 755 "usr/bin"
+}
