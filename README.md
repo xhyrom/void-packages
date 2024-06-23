@@ -2,6 +2,19 @@
 
 This repository contains my personal, non-upstreamed packages.
 
+## Adding the repository
+
+```
+$ sudo nano /etc/xbps.d/10-xhyrom-dev.conf
+
+repository=https://void-repo.xhyrom.dev
+```
+
+Synchronize the repository index and import the public key:
+```
+sudo xbps-install -S
+```
+
 ## Basic build instructions
 
 ```
@@ -37,25 +50,35 @@ See [Contributing](./CONTRIBUTING.md) for a general overview of how to contribut
 
 ### Table of Contents
 
-- [Requirements](#requirements)
-- [Quick start](#quick-start)
-- [chroot methods](#chroot-methods)
-- [Install the bootstrap packages](#install-bootstrap)
-- [Configuration](#configuration)
-- [Directory hierarchy](#directory-hierarchy)
-- [Building packages](#building-packages)
-- [Package build options](#build-options)
-- [Sharing and signing your local repositories](#sharing-and-signing)
-- [Rebuilding and overwriting existing local packages](#rebuilding)
-- [Enabling distcc for distributed compilation](#distcc)
-- [Distfiles mirrors](#distfiles-mirrors)
-- [Cross compiling packages for a target architecture](#cross-compiling)
-- [Using xbps-src in a foreign Linux distribution](#foreign)
-- [Remaking the masterdir](#remaking-masterdir)
-- [Keeping your masterdir uptodate](#updating-masterdir)
-- [Building 32bit packages on x86_64](#building-32bit)
-- [Building packages natively for the musl C library](#building-for-musl)
-- [Building void base-system from scratch](#building-base-system)
+- [Hyro's XBPS source packages collection](#hyros-xbps-source-packages-collection)
+- [Adding the repository](#adding-the-repository)
+- [Basic build instructions](#basic-build-instructions)
+- [Packages](#packages)
+  - [Table of Contents](#table-of-contents)
+  - [Requirements](#requirements)
+  - [Quick start](#quick-start)
+  - [chroot methods](#chroot-methods)
+    - [xbps-uunshare(1) (default)](#xbps-uunshare1-default)
+    - [xbps-uchroot(1)](#xbps-uchroot1)
+    - [bwrap(1)](#bwrap1)
+    - [ethereal](#ethereal)
+  - [Install the bootstrap packages](#install-the-bootstrap-packages)
+  - [Configuration](#configuration)
+    - [Virtual packages](#virtual-packages)
+  - [Directory hierarchy](#directory-hierarchy)
+  - [Building packages](#building-packages)
+  - [Package build options](#package-build-options)
+  - [Sharing and signing your local repositories](#sharing-and-signing-your-local-repositories)
+  - [Rebuilding and overwriting existing local packages](#rebuilding-and-overwriting-existing-local-packages)
+  - [Enabling distcc for distributed compilation](#enabling-distcc-for-distributed-compilation)
+  - [Distfiles mirror(s)](#distfiles-mirrors)
+  - [Cross compiling packages for a target architecture](#cross-compiling-packages-for-a-target-architecture)
+  - [Using xbps-src in a foreign Linux distribution](#using-xbps-src-in-a-foreign-linux-distribution)
+  - [Remaking the masterdir](#remaking-the-masterdir)
+  - [Keeping your masterdir uptodate](#keeping-your-masterdir-uptodate)
+  - [Building 32bit packages on x86\_64](#building-32bit-packages-on-x86_64)
+  - [Building packages natively for the musl C library](#building-packages-natively-for-the-musl-c-library)
+  - [Building void base-system from scratch](#building-void-base-system-from-scratch)
 
 ### Requirements
 
