@@ -3,12 +3,6 @@ title: "Package request: "
 description: Request the addition of a package
 labels: ["request"]
 body:
-  - type: markdown
-    attributes:
-      value: >
-        #### Don't request an update of a package,
-        [We have a script for that](https://repo-default.voidlinux.org/void-updates/void-updates.txt).
-        However, a quality pull request may help.
   - id: name
     type: input
     attributes:
@@ -38,7 +32,7 @@ body:
     attributes:
       label: Does the requested package meet the package requirements?
       description: |
-        See [CONTRIBUTING.md](https://github.com/void-linux/void-packages/blob/master/CONTRIBUTING.md#package-requirements) for details
+        See [CONTRIBUTING.md](https://github.com/xHyroM/void-packages/blob/main/CONTRIBUTING.md#package-requirements) for details
       multiple: true
       options:
         - System
@@ -51,7 +45,7 @@ body:
     attributes:
       label: Is the requested package released?
       description: |
-        See [CONTRIBUTING.md](https://github.com/void-linux/void-packages/blob/master/CONTRIBUTING.md#package-requirements) for details
+        See [CONTRIBUTING.md](https://github.com/xHyroM/void-packages/blob/main/CONTRIBUTING.md#package-requirements) for details
       options:
         - "Yes"
         - "No"

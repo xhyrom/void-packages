@@ -32,15 +32,6 @@ $ xi <package-name>
 $ git clean -dfx
 ```
 
-## Packages
-
-- [vesktop](./srcpkgs/vesktop) → https://github.com/Vencord/Vesktop/
-- [google chrome](./srcpkgs/google-chrome) → https://www.google.com/chrome/
-- [visual studio code](./srcpkgs/visual-studio-code) → https://code.visualstudio.com/
-- [pollymc](./srcpkgs/pollymc) → https://github.com/fn2006/PollyMC
-- [anydesk](./srcpkgs/anydesk) → https://anydesk.com
-- [ms-365-electron](./srcpkgs/ms-365-electron) → https://github.com/agam778/MS-365-Electron
-
 The included `xbps-src` script will fetch and compile the sources, and install its
 files into a `fake destdir` to generate XBPS binary packages that can be installed
 or queried through the `xbps-install(1)` and `xbps-query(1)` utilities, respectively.
