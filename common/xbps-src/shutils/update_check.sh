@@ -1,4 +1,4 @@
-# vim: set ts=4 sw=4 et:
+# vim: set ts=4 sw=4 et ft=bash :
 
 update_check() {
     local i p url pkgurlname rx found_version consider
@@ -11,7 +11,9 @@ update_check() {
     local curlargs=(
         -A "xbps-src-update-check/$XBPS_SRC_VERSION"
         --max-time 10 --compressed -Lsk
-   )
+    )
+
+    pkgname=${pkgname#kf6-}
 
     # XBPS_UPDATE_CHECK_VERBOSE is the old way to show verbose messages
     [ "$XBPS_UPDATE_CHECK_VERBOSE" ] && XBPS_VERBOSE="$XBPS_UPDATE_CHECK_VERBOSE"
@@ -67,7 +69,7 @@ update_check() {
               *code.google.com*|*googlecode*|\
               *launchpad.net*|\
               *cpan.*|\
-              *pythonhosted.org*|\
+              *pythonhosted.org*|*pypi.org/project/*|\
               *github.com*|\
               *//gitlab.*|\
               *bitbucket.org*|\
@@ -129,9 +131,10 @@ update_check() {
                 url="https://launchpad.net/$pkgurlname/+download";;
             *cpan.*)
                 pkgname=${pkgname#perl-};;
-            *pythonhosted.org*)
+            *pythonhosted.org*|*pypi.org/project/*)
                 pkgname=${pkgname#python-}
                 pkgname=${pkgname#python3-}
+                rx="(?<=${pkgname//-/[-_]}-)[0-9.]+(post[0-9]*)?(?=(([.]tar|-cp|-py)))"
                 url="https://pypi.org/simple/$pkgname";;
             *github.com*)
                 pkgurlname="$(printf %s "$url" | cut -d/ -f4,5)"
@@ -149,10 +152,10 @@ update_check() {
                 url="https://bitbucket.org/$pkgurlname/downloads"
                 rx='/(get|downloads)/(v?|\Q'"$pkgname"'\E-)?\K[\d.]+(?=\.tar)';;
             *ftp.gnome.org*|*download.gnome.org*)
-                : ${pattern="(?<=LATEST-IS-)([0-24-9]|3\.[0-9]*[02468]|[4-9][0-9]+)\.[0-9.]*[0-9](?=\")"}
+                rx='(?<=LATEST-IS-)([0-24-9]|3\.[0-9]*[02468]|[4-9][0-9]+)\.[0-9.]*[0-9](?=\")'
                 url="https://download.gnome.org/sources/$pkgname/cache.json";;
             *archive.xfce.org*)
-                : ${pattern="\Q$pkgname\E-\K((([4-9]|([1-9][0-9]+))\.[0-9]*[02468]\.[0-9.]*[0-9])|([0-3]\.[0-9.]*))(?=.tar)"}
+                rx='\Q'"$pkgname"'\E-\K((([4-9]|([1-9][0-9]+))\.[0-9]*[02468]\.[0-9.]*[0-9])|([0-3]\.[0-9.]*))(?=.tar)'
                 url="https://archive.xfce.org/feeds/project/$pkgname" ;;
             *kernel.org/pub/linux/kernel/*)
                 rx=linux-'\K'${version%.*}'[\d.]+(?=\.tar\.xz)';;
