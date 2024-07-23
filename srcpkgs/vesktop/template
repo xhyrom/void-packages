@@ -5,6 +5,7 @@ version='1.5.3'
 revision='1'
 arch='x86_64'
 short_desc='Vesktop gives you the performance of web Discord and the comfort of Discord Desktop'
+maintainer="Jozef Steinhübl <contact@xhyrom.dev>"
 homepage='https://vencord.dev'
 license='GPL3'
 
