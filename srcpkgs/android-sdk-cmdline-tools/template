@@ -1,0 +1,21 @@
+# Template file for 'android-sdk-cmdline-tools'
+pkgname=android-sdk-cmdline-tools
+version=11076708
+revision=1
+depends="virtual?java-environment"
+short_desc="Android SDK Command-line Tools (latest)"
+maintainer="Jozef Steinhübl <xhyrom.hyro@gmail.com>"
+license="custom"
+homepage="https://developer.android.com/studio"
+distfiles="https://dl.google.com/android/repository/commandlinetools-linux-${version}_latest.zip"
+checksum=2d2d50857e4eb553af5a6dc3ad507a17adf43d115264b1afc116f95c92e5e258
+
+restricted=yes
+
+do_install() {
+		vmkdir "opt/android-sdk/cmdline-tools/latest"
+
+		vcopy "*" "opt/android-sdk/cmdline-tools/latest"
+		vinstall "${FILESDIR}/${pkgname}.sh" 755 "etc/profile.d"
+		vinstall "${FILESDIR}/${pkgname}.csh" 755 "etc/profile.d"
+}
