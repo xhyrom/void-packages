@@ -1,6 +1,6 @@
 # Template file for 'modrinth-app'
 pkgname=modrinth-app
-version=0.7.1
+version=0.8.8
 revision=1
 hostmakedepends=""
 makedepends=""
@@ -9,10 +9,11 @@ short_desc="An unique, open source launcher that allows you to play your favorit
 maintainer="Jozef Steinhübl <contact@xhyrom.dev>"
 license="GPL-3.0-or-later"
 homepage="https://modrinth.com/app"
-distfiles="https://launcher-files.modrinth.com/versions/${version}/linux/modrinth-app_${version}_amd64.deb"
-checksum="9e2b1c187a3df1f5db87fd9fe214e4bccf67553d69325243bcb39f62514c6be6"
+distfiles="https://launcher-files.modrinth.com/versions/${version}/linux/Modrinth%20App_${version}_amd64.deb"
+checksum="2518a3f14559ec315c0fff491e1c94b787ba174a3a27b6ba96f2882557597eec"
 
 
 do_install() {
+	mv "bin/ModrinthApp" "bin/modrinth-app"
 	vinstall "bin/modrinth-app" 755 "usr/bin"
 }
