@@ -1,0 +1,25 @@
+# Template file for 'ttf-maple-beta'
+pkgname=ttf-maple-beta
+version=7.0
+pkgver="7.0_beta32"
+revision=1
+short_desc="Open source monospace font with round corner, ligatures and Nerd-Font for IDE and command line"
+maintainer="Jozef Steinhübl <xhyrom.hyro@gmail.com>"
+license="OFL"
+homepage="https://github.com/subframe7536/maple-font"
+distfiles=("$homepage/releases/download/v${pkgver//_/-}/MapleMono-TTF.zip>$pkgname-${pkgver//_/-}-MapleMono-TTF.zip"
+           "$homepage/releases/download/v${pkgver//_/-}/MapleMono-NF.zip>$pkgname-${pkgver//_/-}-MapleMono-NF.zip"
+					 "$homepage/releases/download/v${pkgver//_/-}/MapleMono-NF-CN.zip>$pkgname-${pkgver//_/-}-MapleMono-NF-CN.zip"
+					 "https://raw.githubusercontent.com/subframe7536/maple-font/main/OFL.txt>$pkgname-LICENSE")
+checksum=("b37ca84c71b08d91ff7b9a2fdc42a61d5507efaec6ead2e864230c15ac20a335"
+					"afbf26ceedee6c5dd1f6de7af7885451e133ebb14a8f2ac7ae8fa2c459b03d37"
+					"8db50b4756932ae1012f15bdc5898fe8cb889b111fffa667c720f66abf09f56a"
+					"cdb01cb2c0ac2d618ad3fc082275cf3cbe6145a58d558709ec083ce69c702cf0")
+
+do_install() {
+	vmkdir "usr/share/fonts/${pkgname}"
+	vmkdir "usr/share/licenses/${pkgname}"
+
+	vcopy "LICENSE.txt" "usr/share/licenses/${pkgname}/LICENSE"
+	install -Dm644 "MapleMono-"*".ttf" "${DESTDIR}/usr/share/fonts/$pkgname/"
+}
