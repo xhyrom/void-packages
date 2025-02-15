@@ -2,6 +2,7 @@ name: Release
 
 on:
   workflow_dispatch:
+  push:
 
 jobs:
   # Lint changed templates.
@@ -117,7 +118,7 @@ jobs:
         run: cd hostdir/binpkgs && /tmp/apindex/bin/apindex .
 
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v4
         with:
           path: hostdir/binpkgs
 
