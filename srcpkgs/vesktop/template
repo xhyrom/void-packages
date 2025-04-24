@@ -14,7 +14,7 @@ hostmakedepends="electron33"
 makedepends="pnpm git"
 
 distfiles="https://github.com/Vencord/Vesktop/archive/refs/tags/v${version}.tar.gz"
-checksum="ad43c34a8623ceee9565b41bc0f7cc7ffa3a105d73c0620cc9ed4ab8b416c728"
+checksum="1e85a8ddd76d19b61dd5b2758842e7f3484e19784816d015442a3c5647ff026e"
 
 do_build() {
 	export SYSTEM_ELECTRON_VERSION=$(</usr/lib/electron24/version)
