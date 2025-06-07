@@ -1369,8 +1369,8 @@ libodbcinst.so.2 libodbc-2.3.1_1
 libodbc.so.2 libodbc-2.3.1_1
 libiodbc.so.2 libiodbc-3.52.8_1
 libiodbcinst.so.2 libiodbc-3.52.8_1
-libsolarus.so.1 solarus-1.6.2_1
-libsolarus-gui.so.1 solarus-1.6.2_1
+libsolarus.so.2 solarus-2.0.0_1
+libsolarus-gui.so.2 solarus-2.0.0_1
 libplank.so.1 plank-0.11.0_1
 libssh.so.4 libssh-0.9.5_2
 libxcb-render-util.so.0 xcb-util-renderutil-0.3.8_1
@@ -3679,7 +3679,7 @@ libcaf_core.so.0.18.0 zeek-4.0.0_1
 libcaf_io.so.0.18.0 zeek-4.0.0_1
 libcaf_openssl.so.0.18.0 zeek-4.0.0_1
 libbinpac.so.0 zeek-3.2.4_2
-libllhttp.so.9.2 llhttp-9.2.1_1
+libllhttp.so.9.3 llhttp-9.3.0_1
 libpinyin.so.15 libpinyin-2.8.1_1
 libzhuyin.so.15 libzhuyin-2.8.1_1
 libuhd.so.4.6.0 uhd-4.6.0.0_1
@@ -4556,3 +4556,4 @@ libppsview-4.0.so.4 libpapers-48.3_1
 libngtcp2.so.16 ngtcp2-1.13.0_1
 libngtcp2_crypto_ossl.so.0 ngtcp2-1.13.0_1
 libprom.so prometheus-client-c-0.1.3_1
+libqlementine.so.1 qlementine-1.2.2_1
