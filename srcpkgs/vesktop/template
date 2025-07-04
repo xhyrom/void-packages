@@ -1,7 +1,7 @@
 # Template file for 'vesktop'
 
 pkgname='vesktop'
-version='1.5.5'
+version='1.5.7'
 revision='1'
 arch='x86_64'
 short_desc='Vesktop gives you the performance of web Discord and the comfort of Discord Desktop'
@@ -14,7 +14,7 @@ hostmakedepends="electron33"
 makedepends="pnpm git"
 
 distfiles="https://github.com/Vencord/Vesktop/archive/refs/tags/v${version}.tar.gz"
-checksum="1e85a8ddd76d19b61dd5b2758842e7f3484e19784816d015442a3c5647ff026e"
+checksum="5018a7df4c10bc95ff62234f94c903a56c2051f826adb1110bf3d00297e4a848"
 
 do_build() {
 	export SYSTEM_ELECTRON_VERSION=$(</usr/lib/electron24/version)
