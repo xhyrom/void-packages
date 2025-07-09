@@ -1,8 +1,8 @@
-name: 'Cycle Check'
+name: "Cycle Check"
 
 on:
   schedule:
-    - cron: '0 18 * * *'
+    - cron: "0 18 * * *"
 
 jobs:
   cycles:
@@ -10,9 +10,9 @@ jobs:
     permissions:
       issues: write
     container:
-      image: 'ghcr.io/void-linux/void-buildroot-musl:20231230R1'
+      image: "ghcr.io/void-linux/void-buildroot-musl:20250616R1"
       env:
-        PATH: '/usr/libexec/chroot-git:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/usr/local/bin:/tmp/bin'
+        PATH: "/usr/libexec/chroot-git:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/usr/local/bin:/tmp/bin"
     steps:
       - name: Prepare container
         run: |
