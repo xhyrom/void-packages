@@ -114,6 +114,9 @@ jobs:
           git clone https://github.com/libthinkpad/apindex.git
 
           cd apindex
+
+          sed -i '1s/.*/cmake_minimum_required(VERSION 3.5...3.27)/' CMakeLists.txt
+
           mkdir build
           cd build
           cmake .. -DCMAKE_INSTALL_PREFIX=/tmp/apindex
