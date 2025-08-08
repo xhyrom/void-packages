@@ -1756,7 +1756,7 @@ libjq.so.1 jq-1.6_2
 libcrypto.so.3 libcrypto3-3.1.2_1
 libssl.so.3 libssl3-3.1.2_1
 libvamp-hostsdk.so.3 libvamp-plugin-sdk-2.2_6
-libportmidi.so portmidi-217_1
+libportmidi.so.2 portmidi-2.0.6_1
 libWildMidi.so.2 libwildmidi-0.4.3_1
 libsox.so.3 sox-14.4.2_1
 libsoxr.so.0 libsoxr-0.1.2_1
@@ -3187,7 +3187,7 @@ libffms2.so.4 libffms2-2.23.1_1
 libddcutil.so.5 ddcutil-2.1.4_1
 liblsmash.so.2 liblsmash-2.9.1_1
 libgiac.so.0 libgiac-1.4.9r17_1
-libgnustep-base.so.1.30 gnustep-base-1.30.0_1
+libgnustep-base.so.1.31 gnustep-base-1.31.1_1
 libtermbox.so.1 termbox-1.1.0_1
 libmysofa.so.1 libmysofa-1.2_1
 libzinnia.so.0 libzinnia-0.06_1
