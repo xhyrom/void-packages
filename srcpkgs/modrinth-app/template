@@ -1,6 +1,6 @@
 # Template file for 'modrinth-app'
 pkgname=modrinth-app
-version=0.10.3
+version=0.10.6
 revision=1
 hostmakedepends=""
 makedepends=""
@@ -10,7 +10,7 @@ maintainer="Jozef Steinhübl <contact@xhyrom.dev>"
 license="GPL-3.0-or-later"
 homepage="https://modrinth.com/app"
 distfiles="https://launcher-files.modrinth.com/versions/${version}/linux/Modrinth%20App_${version}_amd64.deb"
-checksum="ed53b7c608ec13147828ac5f5f3cd7d689ec82dc05daf411807299581914a663"
+checksum="5a57f57962c7ebbf0d0629572fee1e242c449acd41dd212f6d3bebb70b66ff38"
 
 
 do_install() {
