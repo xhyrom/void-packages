@@ -1,7 +1,7 @@
 # Template file for 'google-chrome'
 # Official template from https://github.com/void-linux/void-packages/blob/master/srcpkgs/google-chrome/template
 pkgname=google-chrome
-version=139.0.7258.138
+version=141.0.7390.107
 revision=1
 _channel=stable
 archs="x86_64"
@@ -12,7 +12,7 @@ maintainer="Michael Aldridge <maldridge@voidlinux.org>"
 license="custom:chrome"
 homepage="https://www.google.com/chrome/"
 distfiles="https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-${_channel}_${version}-1_amd64.deb"
-checksum=3edc53950860ac6abf7b593f53557ff7368df5ab69835af4ab0a7a960b7268ea
+checksum=74d738a546aa82180cc626cea479f7a761fff39072aa93c3458a545975fb6735
 skiprdeps="/opt/google/chrome/libqt5_shim.so /opt/google/chrome/libqt6_shim.so"
 restricted=yes
 nostrip=yes
@@ -23,7 +23,7 @@ do_install() {
 	vcopy usr /
 
 	# Remove unused icons
-	rm ${DESTDIR}/opt/google/chrome/*.xpm
+	rm ${DESTDIR}/opt/google/chrome/product_logo_*.png
 
 	# Remove the Debian/Ubuntu crontab
 	rm -rf ${DESTDIR}/etc
