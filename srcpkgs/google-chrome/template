@@ -1,7 +1,7 @@
 # Template file for 'google-chrome'
 # Official template from https://github.com/void-linux/void-packages/blob/master/srcpkgs/google-chrome/template
 pkgname=google-chrome
-version=141.0.7390.107
+version=143.0.7499.109
 revision=1
 _channel=stable
 archs="x86_64"
@@ -12,7 +12,7 @@ maintainer="Michael Aldridge <maldridge@voidlinux.org>"
 license="custom:chrome"
 homepage="https://www.google.com/chrome/"
 distfiles="https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-${_channel}_${version}-1_amd64.deb"
-checksum=74d738a546aa82180cc626cea479f7a761fff39072aa93c3458a545975fb6735
+checksum=dfa61e3934e17c5ccc42cfb0c7114bc30526a74b8f05bd3e6fc4c3ecb1b57bed
 skiprdeps="/opt/google/chrome/libqt5_shim.so /opt/google/chrome/libqt6_shim.so"
 restricted=yes
 nostrip=yes
