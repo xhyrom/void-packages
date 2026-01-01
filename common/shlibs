@@ -1196,7 +1196,6 @@ libaa.so.1 aalib-1.4rc4_2
 libbsd.so.0 libbsd-0.4.2_1
 libwiringPi.so libwiringPi-0.0.20200408_1
 libwiringPiDev.so libwiringPi-0.0.20200408_1
-liblockdev.so.1 lockdev-1.0.3_1
 libcec.so.6 libcec-6.0.2_1
 librump.so.0 netbsd-rumpkernel-20140526_3
 librumpvfs.so.0 netbsd-rumpkernel-20140526_3
@@ -3264,7 +3263,7 @@ liblwipv6.so.2 lwipv6-1.5a_1
 libopentime.so.17 OpenTimelineIO-0.17.0_1
 libopentimelineio.so.17 OpenTimelineIO-0.17.0_1
 libpipewire-0.3.so.0 libpipewire-0.3.6_1
-libvolk.so.3.1 volk-3.1.0_1
+libvolk.so.3.2 volk-3.2.0_1
 libgnuradio-runtime.so.3.10.12 gnuradio-3.10.12.0_1
 libgnuradio-pmt.so.3.10.12 gnuradio-3.10.12.0_1
 libgnuradio-blocks.so.3.10.12 gnuradio-3.10.12.0_1
