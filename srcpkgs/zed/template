@@ -1,11 +1,12 @@
 # Template file for 'zed'
 pkgname=zed
-version=0.187.9
+version=0.217.3
 revision=1
 archs="x86_64* aarch64*"
 build_style=cargo
 make_install_args="--path crates/zed"
 make_check_args="-- --test-threads 1"
+make_build_args="--jobs 2"
 hostmakedepends="pkg-config protobuf gettext mold clang18 cmake libX11-devel"
 makedepends="alsa-lib-devel fontconfig-devel libxcb-devel libxkbcommon-devel
 libzstd-devel wayland-devel vulkan-loader openssl-devel libgit2-1.9-devel
@@ -17,7 +18,7 @@ maintainer="SpidFightFR <spidfight@swisscows.email>"
 license="GPL-3.0-or-later, Apache-2.0, AGPL-3.0-or-later"
 homepage="https://zed.dev/"
 distfiles="https://github.com/zed-industries/zed/archive/v${version}.tar.gz"
-checksum="3b3e396a97aaf0eeb49ef1706c8d21e30d5bc4201d43e6e4e3bcdb9b15b61a13"
+checksum="fe7b87e70fa68b11350445997e3a1b8f56b75ccf8222b1cc4725af848ed9a08d"
 
 post_install() {
 	vlicense ${wrksrc}/LICENSE-AGPL
