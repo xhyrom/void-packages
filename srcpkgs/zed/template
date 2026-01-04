@@ -6,7 +6,6 @@ archs="x86_64* aarch64*"
 build_style=cargo
 make_install_args="--path crates/zed"
 make_check_args="-- --test-threads 1"
-make_build_args="--jobs 2"
 hostmakedepends="pkg-config protobuf gettext mold clang18 cmake libX11-devel"
 makedepends="alsa-lib-devel fontconfig-devel libxcb-devel libxkbcommon-devel
 libzstd-devel wayland-devel vulkan-loader openssl-devel libgit2-1.9-devel
