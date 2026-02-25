@@ -1983,6 +1983,7 @@ libKF6Syndication.so.6 kf6-syndication-6.19.0_1
 libKF6SyntaxHighlighting.so.6 kf6-syntax-highlighting-6.19.0_1
 libKF6ThreadWeaver.so.6 kf6-threadweaver-6.19.0_1
 # KDE Plasma
+libKQuickImageEditor.so.1 kquickimageeditor-0.6.0_1
 libKNightTime.so.0 knighttime-6.5.1_1
 libklookandfeel.so.6 plasma-workspace-6.5.1_1
 libtaskmanager.so.6 plasma-workspace-6.5.1_1
@@ -2003,8 +2004,8 @@ libKPipeWireRecord.so.6 kpipewire-6.5.1_1
 libKPipeWireDmaBuf.so.6 kpipewire-6.5.1_1
 libPlasmaActivities.so.7 plasma-activities-6.5.1_1
 libPlasmaActivitiesStats.so.1 plasma-activities-stats-6.5.1_1
-libPlasma.so.6 libplasma-6.5.1_1
-libPlasmaQuick.so.6 libplasma-6.5.1_1
+libPlasma.so.7 libplasma-6.6.1_1
+libPlasmaQuick.so.7 libplasma-6.6.1_1
 libPlasma5Support.so.6 plasma5support-6.5.1_1
 libkdecorations3.so.6 kf6-kdecoration-6.5.1_1
 libkdecorations3private.so.2 kf6-kdecoration-6.5.1_1
