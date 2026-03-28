@@ -1647,7 +1647,7 @@ libefisec.so.1 libefivar-38_1
 libportaudio.so.2 portaudio-19.20140130_1
 libportaudiocpp.so.0 portaudio-cpp-19.20140130_1
 libdar.so.6000 libdar-2.6.6_1
-libdar64.so.6000 libdar-2.6.6_1
+libdar64.so.7000 libdar-2.8.4_1
 libpython3.so python3-3.14.0_1
 libpython3.14.so.1.0 python3-3.14.0_1
 libbrscandec2.so.1 brother-brscan3-0.2.11_2
@@ -4463,7 +4463,7 @@ libjxl_cms.so.0.11 libjxl-0.11.0_1
 libjxl_threads.so.0.11 libjxl-0.11.0_1
 libvmaf.so.3 vmaf-3.0.0_1
 liblc3.so.1 liblc3-1.0.3_1
-libmimalloc.so.2 mimalloc-2.1.2_1
+libmimalloc.so.3 mimalloc-3.2.8_1
 lib2geom.so.1.4.0 lib2geom-1.4_1
 libdbi.so.1 libdbi-0.9.0_1
 libchafa.so.0 libchafa-1.12.5_1
