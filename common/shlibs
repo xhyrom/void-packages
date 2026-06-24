@@ -1630,7 +1630,7 @@ libBulletSoftBody.so.3.25 bullet-3.25_1
 libBullet3Common.so.3.25 bullet-3.25_1
 libinotifytools.so.0 libinotify-tools-3.14_2
 libfswatch.so.13 libfswatch-1.17.1_1
-libopensc.so.12 libopensc-0.26.0_1
+libopensc.so.13 libopensc-0.27.1_1
 libSDL2_ttf-2.0.so.0 SDL2_ttf-2.0.12_1
 librtlsdr.so.0 librtlsdr-0.5.3_1
 libSDL2_mixer-2.0.so.0 SDL2_mixer-2.0.0_1
@@ -2055,6 +2055,7 @@ libkmailconfirmbeforedeleting.so.6 kdepim-addons-24.02.0_1
 libKUnifiedPush.so.1 kunifiedpush-25.08.0_1
 libKSaneCore6.so.1 ksanecore6-24.02.0_1
 libKSaneWidgets6.so.6 libksane6-24.02.0_1
+libfuturesql6.so.0 futuresql-0.1.1_1
 # Akonadi
 libKPim6GAPIBlogger.so.6 libkgapi-24.02.0_1
 libKPim6GAPICalendar.so.6 libkgapi-24.02.0_1
@@ -4554,6 +4555,7 @@ libilbc.so.3 libilbc-3.0.4_1
 libmaliit-plugins.so.2 maliit-keyboard-2.3.1_1
 libSDL3.so.0 SDL3-3.2.2_1
 libSDL3_image.so.0 SDL3_image-3.2.4_1
+libSDL3_mixer.so.0 SDL3_mixer-3.2.4_1
 libiconv.so.2 libiconv-1.18_1
 libcharset.so.1 libiconv-1.18_1
 libomemo-c.so.0 libomemo-c-0.5.1_1
