@@ -2984,7 +2984,7 @@ libpcre2-posix.so.3 libpcre2-10.39_1
 libui.so.0 libui-alpha3.1_1
 libgnome-autoar-0.so.0 gnome-autoar-0.1.1_1
 libgnome-autoar-gtk-0.so.0 gnome-autoar-0.1.1_1
-libxapp.so.1 xapps-1.0.2_1
+libxapp.so.1 xapp-3.2.2_1
 libite.so.5 libite-2.0.1_1
 liblog4cplus-2.1.so.9 log4cplus-2.1.2_1
 liblog4cplusU-2.1.so.9 log4cplus-2.1.2_1
@@ -4485,9 +4485,9 @@ libplayerctl.so.2 playerctl-2.4.1_1
 libwireplumber-0.5.so.0 wireplumber-0.5.2_1
 libjodycode.so.4 libjodycode-4.1.2_1
 libgsoapssl++-2.8.124.so gsoap-2.8.124_1
-libjxl.so.0.11 libjxl-0.11.0_1
-libjxl_cms.so.0.11 libjxl-0.11.0_1
-libjxl_threads.so.0.11 libjxl-0.11.0_1
+libjxl.so.0.12 libjxl-0.12.0_1
+libjxl_cms.so.0.12 libjxl-0.12.0_1
+libjxl_threads.so.0.12 libjxl-0.12.0_1
 libvmaf.so.3 vmaf-3.0.0_1
 liblc3.so.1 liblc3-1.0.3_1
 libmimalloc.so.3 mimalloc-3.4.1_1
